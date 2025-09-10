@@ -1,18 +1,18 @@
-const Category = require("../../Model/categoryModel");
+const Brand = require("../../Model/brandModel");
 
 exports.create = async (req,res) => {
     try{
-        const category = new Category({
+        const brand = new Brand({
            
             name:req.body.name,
             description:req.body.description,
             website:req.body.website,
             is_active:req.body.is_active
         })
-        await category.save();
+        await brand.save();
 
         res.json({
-            data:category,
+            data:brand,
             status:"200",
             success:true,
             message:"Data created succesfully"
@@ -30,7 +30,7 @@ exports.create = async (req,res) => {
 
 exports.list = async (req,res) => {
     try{
-        const list = await Category.find();
+        const list = await Brand.find();
 
         res.json({
             data:list,
@@ -47,11 +47,11 @@ exports.list = async (req,res) => {
 
         })
     }
-}   
+}
 
 exports.update = async(req,res) => {
     try{
-        const updatedData = await Category.findByIdAndUpdate(req.params.category_id,req.body,{new:true});
+        const updatedData = await Brand.findByIdAndUpdate(req.params.category_id,req.body,{new:true});
         res.json({
             data:updatedData,
             status:"200",
@@ -72,7 +72,7 @@ exports.update = async(req,res) => {
 
 exports.delete = async(req,res) =>{
      try{
-        const deletedData = await Category.findByIdAndDelete(req.params.category_id);
+        const deletedData = await Brand.findByIdAndDelete(req.params.category_id);
         res.json({
             data:deletedData,
             status:"200",
